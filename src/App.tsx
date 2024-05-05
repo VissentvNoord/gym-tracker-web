@@ -1,24 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import WorkoutList, { Workout } from './pages/WorkoutList';
+import WorkoutPage from './pages/WorkoutPage';
+import NewWorkout from './pages/NewWorkout';
+import { NewWorkoutContext } from './components/NewWorkoutContext';
 
 function App() {
+  const [newWorkout, setNewWorkout] = React.useState<Workout | null>(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='h-full'>
+      <main className='h-full p-6'>
+        <NewWorkoutContext.Provider value={{ newWorkout, setNewWorkout }}>
+          <NewWorkout />
+        </NewWorkoutContext.Provider>
+      </main>
     </div>
   );
 }
